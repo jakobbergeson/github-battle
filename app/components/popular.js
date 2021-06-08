@@ -58,7 +58,7 @@ function ReposGrid({ repos }) {
               <li>
                 <FontAwesomeIcon
                   icon={faUser}
-                  size={22}
+                  size="1x"
                   color="rgb(255, 191, 116)"
                 />
                 <a href={`https://github.com/${login}`}>{login}</a>
@@ -67,7 +67,7 @@ function ReposGrid({ repos }) {
                 <FontAwesomeIcon
                   icon={faStar}
                   color="rgb(255, 215, 0) "
-                  size={22}
+                  size="1x"
                 />
                 {stargazers_count.toLocaleString()} stars
               </li>
@@ -75,7 +75,7 @@ function ReposGrid({ repos }) {
                 <FontAwesomeIcon
                   icon={faCodeBranch}
                   color="rgb(129, 195, 245) "
-                  size={22}
+                  size="1x"
                 />
                 {forks.toLocaleString()} forks
               </li>
@@ -83,7 +83,7 @@ function ReposGrid({ repos }) {
                 <FontAwesomeIcon
                   icon={faExclamationTriangle}
                   color="rgb(241, 138, 147) "
-                  size={22}
+                  size="1x"
                 />
                 {open_issues.toLocaleString()} open
               </li>

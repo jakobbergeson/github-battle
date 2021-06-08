@@ -19,7 +19,7 @@ function Instructions() {
           <FontAwesomeIcon
             icon={faUserFriends}
             color="rgb(255, 191, 116)"
-            size={140}
+            size="3x"
             className="bg-light"
           />
         </li>
@@ -28,7 +28,7 @@ function Instructions() {
           <FontAwesomeIcon
             icon={faFighterJet}
             color="#727272"
-            size={140}
+            size="3x"
             className="bg-light"
           />
         </li>
@@ -37,7 +37,7 @@ function Instructions() {
           <FontAwesomeIcon
             icon={faTrophy}
             color="rgb(255, 215, 0)"
-            size={140}
+            size="3x"
             className="bg-light"
           />
         </li>
@@ -120,7 +120,7 @@ function PlayerPreview({ username, onReset, label }) {
           <FontAwesomeIcon
             icon={faTimesCircle}
             color="rgb(194, 57, 42)"
-            size={26}
+            size="2x"
           />
         </button>
       </div>

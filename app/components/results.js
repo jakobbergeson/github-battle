@@ -12,7 +12,7 @@ import {
 import Card from "./card";
 import Proptypes from "prop-types";
 
-function ProfileList({ profile }) {
+function ProfileList({ profile, repos }) {
   return (
     <ul className="card-list">
       <li>
@@ -47,12 +47,17 @@ function ProfileList({ profile }) {
         />
         {profile.following.toLocaleString()} following
       </li>
+      <li>
+        <FontAwesomeIcon icon={faCode} color="#8da5b0" size="1x" />
+        {repos.toLocaleString()} repos
+      </li>
     </ul>
   );
 }
 
 ProfileList.proptypes = {
   profile: Proptypes.object.isRequired,
+  repos: Proptypes.number.isRequired,
 };
 
 export default class Results extends React.Component {
@@ -95,28 +100,38 @@ export default class Results extends React.Component {
     if (error === true) {
       return <p className="center-text error">{error}</p>;
     }
-
     return (
-      <div className="grid space-around container-sm">
-        <Card
-          header={winner.score === loser.score ? "Tie!" : "Winner"}
-          subheader={`Score: ${winner.score.toLocaleString()}`}
-          avatar={winner.profile.avatar_url}
-          name={winner.profile.login}
-          href={winner.profile.html_url}
-        >
-          <ProfileList profile={winner.profile} />
-        </Card>
-        <Card
-          header={winner.score === loser.score ? "Tie!" : "Loser"}
-          subheader={loser.profile.login}
-          avatar={loser.profile.avatar_url}
-          name={loser.profile.login}
-          href={loser.profile.html_url}
-        >
-          <ProfileList profile={loser.profile} />
-        </Card>
-      </div>
+      <React.Fragment>
+        <div className="grid space-around container-sm">
+          <Card
+            header={winner.score === loser.score ? "Tie!" : "Winner"}
+            subheader={`Score: ${winner.score.toLocaleString()}`}
+            avatar={winner.profile.avatar_url}
+            name={winner.profile.login}
+            href={winner.profile.html_url}
+          >
+            <ProfileList profile={winner.profile} repos={winner.repos} />
+          </Card>
+          <Card
+            header={winner.score === loser.score ? "Tie!" : "Loser"}
+            subheader={loser.profile.login}
+            avatar={loser.profile.avatar_url}
+            name={loser.profile.login}
+            href={loser.profile.html_url}
+          >
+            <ProfileList profile={loser.profile} repos={loser.repos} />
+          </Card>
+        </div>
+        <button className="btn dark-btn btn-space" onClick={this.props.onReset}>
+          Reset
+        </button>
+      </React.Fragment>
     );
   }
 }
+
+Results.proptypes = {
+  playerOne: Proptypes.string.isRequired,
+  playerTwo: Proptypes.string.isRequired,
+  onReset: Proptypes.func.isRequired,
+};

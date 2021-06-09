@@ -9,6 +9,8 @@ import {
   faUserFriends,
   faUsers,
 } from "@fortawesome/free-solid-svg-icons";
+import Card from "./card";
+
 export default class Results extends React.Component {
   constructor(props) {
     super(props);
@@ -52,30 +54,19 @@ export default class Results extends React.Component {
 
     return (
       <div className="grid space-around container-sm">
-        <div className="card bg-light">
-          <h4 className="header-lg center-text">
-            {winner.score === loser.score ? "Tie!" : "Winner"}
-          </h4>
-          <img
-            className="avatar"
-            src={winner.profile.avatar_url}
-            alt={`Avatar for ${winner.profile.login}`}
-          />
-          <h4 className="center-text">
-            Score: {winner.score.toLocaleString()}
-          </h4>
-          <h2 className="center-text">
-            {" "}
-            <a className="link" href={winner.profile.html_url} target="_blank">
-              {winner.profile.login}
-            </a>
-          </h2>
+        <Card
+          header={winner.score === loser.score ? "Tie!" : "Winner"}
+          subheader={`Score: ${winner.score.toLocaleString()}`}
+          avatar={winner.profile.avatar_url}
+          name={winner.profile.login}
+          href={winner.profile.html_url}
+        >
           <ul className="card-list">
             <li>
               <FontAwesomeIcon
                 icon={faUser}
                 color="rgb(239, 115, 115)"
-                size="2x"
+                size="1x"
               />
               {winner.profile.name}
             </li>
@@ -84,14 +75,14 @@ export default class Results extends React.Component {
                 <FontAwesomeIcon
                   icon={faCompass}
                   color="rgb(144, 115, 115)"
-                  size="2x"
+                  size="1x"
                 />
                 {winner.profile.location}
               </li>
             )}
             {winner.profile.company && (
               <li>
-                <FontAwesomeIcon icon={faBriefcase} color="#795548" size="2x" />
+                <FontAwesomeIcon icon={faBriefcase} color="#795548" size="1x" />
                 {winner.profile.company}
               </li>
             )}
@@ -99,7 +90,7 @@ export default class Results extends React.Component {
               <FontAwesomeIcon
                 icon={faUsers}
                 color="rgb(129, 195, 245)"
-                size="2x"
+                size="1x"
               />
               {winner.profile.followers.toLocaleString()} followers
             </li>
@@ -107,33 +98,25 @@ export default class Results extends React.Component {
               <FontAwesomeIcon
                 icon={faUserFriends}
                 color="rgb(64, 195, 183)"
-                size="2x"
+                size="1x"
               />
               {winner.profile.following.toLocaleString()} following
             </li>
           </ul>
-        </div>
-        <div className="card bg-light">
-          <h4 className="header-lg center-text">
-            {winner.score === loser.score ? "Tie!" : "Loser"}
-          </h4>
-          <img
-            className="avatar"
-            src={loser.profile.avatar_url}
-            alt={`Avatar for ${loser.profile.login}`}
-          />
-          <h4 className="center-text">Score: {loser.score.toLocaleString()}</h4>
-          <h2 className="center-text">
-            <a className="link" href={loser.profile.html_url} target="_blank">
-              {loser.profile.login}
-            </a>
-          </h2>
+        </Card>
+        <Card
+          header={winner.score === loser.score ? "Tie!" : "Loser"}
+          subheader={loser.profile.login}
+          avatar={loser.profile.avatar_url}
+          name={loser.profile.login}
+          href={loser.profile.html_url}
+        >
           <ul className="card-list">
             <li>
               <FontAwesomeIcon
                 icon={faUser}
                 color="rgb(239, 115, 115)"
-                size="2x"
+                size="1x"
               />
               {loser.profile.name}
             </li>
@@ -142,14 +125,14 @@ export default class Results extends React.Component {
                 <FontAwesomeIcon
                   icon={faCompass}
                   color="rgb(144, 115, 115)"
-                  size="2x"
+                  size="1x"
                 />
                 {loser.profile.location}
               </li>
             )}
             {loser.profile.company && (
               <li>
-                <FontAwesomeIcon icon={faBriefcase} color="#795548" size="2x" />
+                <FontAwesomeIcon icon={faBriefcase} color="#795548" size="1x" />
                 {loser.profile.company}
               </li>
             )}
@@ -157,7 +140,7 @@ export default class Results extends React.Component {
               <FontAwesomeIcon
                 icon={faUsers}
                 color="rgb(129, 195, 245)"
-                size="2x"
+                size="1x"
               />
               {loser.profile.followers.toLocaleString()} followers
             </li>
@@ -165,12 +148,12 @@ export default class Results extends React.Component {
               <FontAwesomeIcon
                 icon={faUserFriends}
                 color="rgb(64, 195, 183)"
-                size="2x"
+                size="1x"
               />
               {loser.profile.following.toLocaleString()} following
             </li>
           </ul>
-        </div>
+        </Card>
       </div>
     );
   }

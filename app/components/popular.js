@@ -8,6 +8,7 @@ import {
   faCodeBranch,
   faExclamationTriangle,
 } from "@fortawesome/free-solid-svg-icons";
+import Card from "./card";
 
 function LangaugesNav({ selected, onUpdateLanguage }) {
   const languages = ["All", "JavaScript", "Ruby", "Java", "CSS", "Python"];
@@ -42,52 +43,48 @@ function ReposGrid({ repos }) {
           repo;
         const { login, avatar_url } = owner;
         return (
-          <li key={html_url} className="card bg-light">
-            <h4 className="header-lg center-text">#{index + 1}</h4>
-            <img
-              className="avatar"
-              src={avatar_url}
-              alt={`Avatar for ${login}`}
-            />
-            <h2 className="center-text">
-              <a href={html_url} className="link">
-                {login}
-              </a>
-            </h2>
-            <ul className="card-list">
-              <li>
-                <FontAwesomeIcon
-                  icon={faUser}
-                  size="1x"
-                  color="rgb(255, 191, 116)"
-                />
-                <a href={`https://github.com/${login}`}>{login}</a>
-              </li>
-              <li>
-                <FontAwesomeIcon
-                  icon={faStar}
-                  color="rgb(255, 215, 0) "
-                  size="1x"
-                />
-                {stargazers_count.toLocaleString()} stars
-              </li>
-              <li>
-                <FontAwesomeIcon
-                  icon={faCodeBranch}
-                  color="rgb(129, 195, 245) "
-                  size="1x"
-                />
-                {forks.toLocaleString()} forks
-              </li>
-              <li>
-                <FontAwesomeIcon
-                  icon={faExclamationTriangle}
-                  color="rgb(241, 138, 147) "
-                  size="1x"
-                />
-                {open_issues.toLocaleString()} open
-              </li>
-            </ul>
+          <li key={html_url}>
+            <Card
+              header={`#${index + 1}`}
+              avatar={avatar_url}
+              name={login}
+              href={html_url}
+            >
+              <ul className="card-list">
+                <li>
+                  <FontAwesomeIcon
+                    icon={faUser}
+                    size="1x"
+                    color="rgb(255, 191, 116)"
+                  />
+                  <a href={`https://github.com/${login}`}>{login}</a>
+                </li>
+                <li>
+                  <FontAwesomeIcon
+                    icon={faStar}
+                    color="rgb(255, 215, 0) "
+                    size="1x"
+                  />
+                  {stargazers_count.toLocaleString()} stars
+                </li>
+                <li>
+                  <FontAwesomeIcon
+                    icon={faCodeBranch}
+                    color="rgb(129, 195, 245) "
+                    size="1x"
+                  />
+                  {forks.toLocaleString()} forks
+                </li>
+                <li>
+                  <FontAwesomeIcon
+                    icon={faExclamationTriangle}
+                    color="rgb(241, 138, 147) "
+                    size="1x"
+                  />
+                  {open_issues.toLocaleString()} open
+                </li>
+              </ul>
+            </Card>
           </li>
         );
       })}

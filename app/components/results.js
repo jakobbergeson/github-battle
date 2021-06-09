@@ -10,6 +10,50 @@ import {
   faUsers,
 } from "@fortawesome/free-solid-svg-icons";
 import Card from "./card";
+import Proptypes from "prop-types";
+
+function ProfileList({ profile }) {
+  return (
+    <ul className="card-list">
+      <li>
+        <FontAwesomeIcon icon={faUser} color="rgb(239, 115, 115)" size="1x" />
+        {profile.name}
+      </li>
+      {profile.location && (
+        <li>
+          <FontAwesomeIcon
+            icon={faCompass}
+            color="rgb(144, 115, 115)"
+            size="1x"
+          />
+          {profile.location}
+        </li>
+      )}
+      {profile.company && (
+        <li>
+          <FontAwesomeIcon icon={faBriefcase} color="#795548" size="1x" />
+          {profile.company}
+        </li>
+      )}
+      <li>
+        <FontAwesomeIcon icon={faUsers} color="rgb(129, 195, 245)" size="1x" />
+        {profile.followers.toLocaleString()} followers
+      </li>
+      <li>
+        <FontAwesomeIcon
+          icon={faUserFriends}
+          color="rgb(64, 195, 183)"
+          size="1x"
+        />
+        {profile.following.toLocaleString()} following
+      </li>
+    </ul>
+  );
+}
+
+ProfileList.proptypes = {
+  profile: Proptypes.object.isRequired,
+};
 
 export default class Results extends React.Component {
   constructor(props) {
@@ -61,48 +105,7 @@ export default class Results extends React.Component {
           name={winner.profile.login}
           href={winner.profile.html_url}
         >
-          <ul className="card-list">
-            <li>
-              <FontAwesomeIcon
-                icon={faUser}
-                color="rgb(239, 115, 115)"
-                size="1x"
-              />
-              {winner.profile.name}
-            </li>
-            {winner.profile.location && (
-              <li>
-                <FontAwesomeIcon
-                  icon={faCompass}
-                  color="rgb(144, 115, 115)"
-                  size="1x"
-                />
-                {winner.profile.location}
-              </li>
-            )}
-            {winner.profile.company && (
-              <li>
-                <FontAwesomeIcon icon={faBriefcase} color="#795548" size="1x" />
-                {winner.profile.company}
-              </li>
-            )}
-            <li>
-              <FontAwesomeIcon
-                icon={faUsers}
-                color="rgb(129, 195, 245)"
-                size="1x"
-              />
-              {winner.profile.followers.toLocaleString()} followers
-            </li>
-            <li>
-              <FontAwesomeIcon
-                icon={faUserFriends}
-                color="rgb(64, 195, 183)"
-                size="1x"
-              />
-              {winner.profile.following.toLocaleString()} following
-            </li>
-          </ul>
+          <ProfileList profile={winner.profile} />
         </Card>
         <Card
           header={winner.score === loser.score ? "Tie!" : "Loser"}
@@ -111,48 +114,7 @@ export default class Results extends React.Component {
           name={loser.profile.login}
           href={loser.profile.html_url}
         >
-          <ul className="card-list">
-            <li>
-              <FontAwesomeIcon
-                icon={faUser}
-                color="rgb(239, 115, 115)"
-                size="1x"
-              />
-              {loser.profile.name}
-            </li>
-            {loser.profile.location && (
-              <li>
-                <FontAwesomeIcon
-                  icon={faCompass}
-                  color="rgb(144, 115, 115)"
-                  size="1x"
-                />
-                {loser.profile.location}
-              </li>
-            )}
-            {loser.profile.company && (
-              <li>
-                <FontAwesomeIcon icon={faBriefcase} color="#795548" size="1x" />
-                {loser.profile.company}
-              </li>
-            )}
-            <li>
-              <FontAwesomeIcon
-                icon={faUsers}
-                color="rgb(129, 195, 245)"
-                size="1x"
-              />
-              {loser.profile.followers.toLocaleString()} followers
-            </li>
-            <li>
-              <FontAwesomeIcon
-                icon={faUserFriends}
-                color="rgb(64, 195, 183)"
-                size="1x"
-              />
-              {loser.profile.following.toLocaleString()} following
-            </li>
-          </ul>
+          <ProfileList profile={loser.profile} />
         </Card>
       </div>
     );

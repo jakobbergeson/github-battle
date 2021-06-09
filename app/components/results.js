@@ -11,6 +11,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Card from "./card";
 import Proptypes from "prop-types";
+import Loading from "./loading";
 
 function ProfileList({ profile, repos }) {
   return (
@@ -94,7 +95,7 @@ export default class Results extends React.Component {
     const { winner, loser, loading, error } = this.state;
 
     if (loading === true) {
-      return <p>LOADING</p>;
+      return <Loading text="Battling" />;
     }
 
     if (error === true) {

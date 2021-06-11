@@ -12,28 +12,35 @@ import {
 import Card from "./card";
 import Proptypes from "prop-types";
 import Loading from "./loading";
+import Tooltip from "./Tooltip";
 
 function ProfileList({ profile, repos }) {
   return (
     <ul className="card-list">
       <li>
-        <FontAwesomeIcon icon={faUser} color="rgb(239, 115, 115)" size="1x" />
-        {profile.name}
+        <Tooltip text="Github username">
+          <FontAwesomeIcon icon={faUser} color="rgb(239, 115, 115)" size="1x" />
+          {profile.name}
+        </Tooltip>
       </li>
       {profile.location && (
         <li>
-          <FontAwesomeIcon
-            icon={faCompass}
-            color="rgb(144, 115, 115)"
-            size="1x"
-          />
-          {profile.location}
+          <Tooltip text="User's location">
+            <FontAwesomeIcon
+              icon={faCompass}
+              color="rgb(144, 115, 115)"
+              size="1x"
+            />
+            {profile.location}
+          </Tooltip>
         </li>
       )}
       {profile.company && (
         <li>
-          <FontAwesomeIcon icon={faBriefcase} color="#795548" size="1x" />
-          {profile.company}
+          <Tooltip text="User's company">
+            <FontAwesomeIcon icon={faBriefcase} color="#795548" size="1x" />
+            {profile.company}
+          </Tooltip>
         </li>
       )}
       <li>

@@ -10,6 +10,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Card from "./card";
 import Loading from "./loading";
+import Tooltip from "./tooltip";
 
 function LangaugesNav({ selected, onUpdateLanguage }) {
   const languages = ["All", "JavaScript", "Ruby", "Java", "CSS", "Python"];
@@ -53,12 +54,14 @@ function ReposGrid({ repos }) {
             >
               <ul className="card-list">
                 <li>
-                  <FontAwesomeIcon
-                    icon={faUser}
-                    size="1x"
-                    color="rgb(255, 191, 116)"
-                  />
-                  <a href={`https://github.com/${login}`}>{login}</a>
+                  <Tooltip text="Github username">
+                    <FontAwesomeIcon
+                      icon={faUser}
+                      size="1x"
+                      color="rgb(255, 191, 116)"
+                    />
+                    <a href={`https://github.com/${login}`}>{login}</a>
+                  </Tooltip>
                 </li>
                 <li>
                   <FontAwesomeIcon

@@ -12,7 +12,7 @@ import {
 import Card from "./card";
 import Proptypes from "prop-types";
 import Loading from "./loading";
-import Tooltip from "./Tooltip";
+import Tooltip from "./tooltip";
 
 function ProfileList({ profile, repos }) {
   return (

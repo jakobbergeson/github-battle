@@ -9,7 +9,7 @@ import Loading from "./components/loading";
 
 const Popular = React.lazy(() => import("./components/popular"));
 const Battle = React.lazy(() => import("./components/battle"));
-const Results = React.lazy(() => import("./components/Results"));
+const Results = React.lazy(() => import("./components/results"));
 
 export default class App extends React.Component {
   state = {
